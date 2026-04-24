@@ -2,11 +2,10 @@ function Link({ href, children }) {
   return <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>;
 }
 
-function ConceptSourceBlock({ year, title, authentic, sources }) {
+function ConceptSourceBlock({ title, authentic, sources }) {
   return (
     <div className="about__era">
       <div className="about__era-head">
-        <span className="about__era-year">{year}</span>
         <span className="about__era-title">{title}</span>
       </div>
       <div className="about__era-row">
@@ -47,7 +46,6 @@ export default function About() {
         <h3 className="about__h">Sources, by concept</h3>
 
         <ConceptSourceBlock
-          year="~1960"
           title="How Computers See"
           authentic="The pixel art objects and RGB color model are standard computer science. The pixel grid interaction is an original activity; no external dataset is used."
           sources={[
@@ -57,7 +55,6 @@ export default function About() {
         />
 
         <ConceptSourceBlock
-          year="~1965"
           title="One Neuron"
           authentic="The neuron math (weighted sum + bias + ReLU) is standard. The questions and suggested inputs are original. The computation walkthrough mirrors how modern deep learning frameworks compute a single unit."
           sources={[
@@ -67,7 +64,6 @@ export default function About() {
         />
 
         <ConceptSourceBlock
-          year="~1986"
           title="A Network"
           authentic="The XOR scatter plot uses a synthetic dataset. The pre-trained weights are hand-designed to correctly solve the XOR pattern. The forward pass arithmetic is real."
           sources={[
@@ -77,7 +73,6 @@ export default function About() {
         />
 
         <ConceptSourceBlock
-          year="~1998"
           title="Seeing Patterns"
           authentic="The filter kernels (Sobel edge detectors, box blur, sharpen) are standard image processing filters. The convolution arithmetic is real. The 8×8 input image is a hand-crafted pixel-art smiley face (not a photograph)."
           sources={[
@@ -87,7 +82,6 @@ export default function About() {
         />
 
         <ConceptSourceBlock
-          year="~2012"
           title="Digit Classifier"
           authentic="The drawing canvas sends your digit to a real PyTorch CNN (MNISTNet) trained on the MNIST dataset. The pixel grid, conv1 feature maps, conv2 feature maps, and output probabilities are all real model activations returned by the Flask server."
           sources={[
@@ -97,7 +91,6 @@ export default function About() {
         />
 
         <ConceptSourceBlock
-          year="~2012"
           title="Learning to See"
           authentic="The training demo runs real backpropagation in the browser on a synthetic 20-point dataset. The network architecture (2→2→1) and gradient descent implementation are standard."
           sources={[
