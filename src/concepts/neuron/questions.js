@@ -1,0 +1,58 @@
+export const QUESTIONS = [
+  {
+    id: "lunch",
+    prompt: "Should I eat lunch right now?",
+    yesLabel: "Eat lunch",
+    noLabel: "Skip for now",
+    bias: 0.2,
+    suggestions: [
+      { text: "I'm hungry", sign: "pos" },
+      { text: "It's lunchtime", sign: "pos" },
+      { text: "Food is nearby", sign: "pos" },
+      { text: "I just ate", sign: "neg" },
+      { text: "I'm not hungry", sign: "neg" },
+    ],
+  },
+  {
+    id: "study",
+    prompt: "Should I keep studying or go to sleep?",
+    yesLabel: "Keep studying",
+    noLabel: "Go to sleep",
+    bias: -0.5,
+    suggestions: [
+      { text: "I have a test tomorrow", sign: "pos" },
+      { text: "I feel prepared", sign: "neg" },
+      { text: "It's past midnight", sign: "neg" },
+      { text: "I had coffee recently", sign: "pos" },
+      { text: "I have early class", sign: "neg" },
+    ],
+  },
+  {
+    id: "umbrella",
+    prompt: "Should I bring an umbrella?",
+    yesLabel: "Bring umbrella",
+    noLabel: "Leave it",
+    bias: -0.3,
+    suggestions: [
+      { text: "It looks cloudy", sign: "pos" },
+      { text: "The forecast says rain", sign: "pos" },
+      { text: "I'll be outside all day", sign: "pos" },
+      { text: "The sky is clear", sign: "neg" },
+      { text: "I'm just going to my car", sign: "neg" },
+    ],
+  },
+  {
+    id: "honors",
+    prompt: "Should I take honors math next year?",
+    yesLabel: "Take honors",
+    noLabel: "Stick with regular",
+    bias: 0,
+    suggestions: [
+      { text: "I did well in math this year", sign: "pos" },
+      { text: "I enjoy the challenge", sign: "pos" },
+      { text: "I'm applying to competitive colleges", sign: "pos" },
+      { text: "I already have a heavy course load", sign: "neg" },
+      { text: "Math stresses me out", sign: "neg" },
+    ],
+  },
+];
