@@ -29,8 +29,7 @@ export default function About() {
       <section className="about__section">
         <h3 className="about__h">Credits</h3>
         <p>
-          Designed and guided by{" "}
-          <Link href="https://summer-royal.github.io/">Summer Royal</Link>.
+          Designed and guided by Summer Royal and Daniela Ganelin.
           Code written by{" "}
           <Link href="https://claude.com/claude-code">Claude Code</Link>.
         </p>
