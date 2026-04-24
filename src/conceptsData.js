@@ -43,7 +43,7 @@ export const CONCEPTS = [
   },
   {
     id: "convolutions",
-    label: "Seeing Patterns",
+    label: "Seeing Patterns (optional)",
     year: "~1998",
     bigIdea: "Slide a small filter across the image to detect local patterns.",
     motivation:

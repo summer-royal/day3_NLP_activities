@@ -118,6 +118,46 @@ export default function Neuron() {
                 the neuron do its math.
               </p>
             </div>
+            <svg viewBox="0 0 380 160" width="100%" style={{ maxWidth: 380, display: "block", margin: "4px 0" }}>
+              {/* input nodes */}
+              {[["x₁", 35], ["x₂", 80], ["x₃", 125]].map(([label, iy]) => (
+                <g key={label}>
+                  <circle cx={60} cy={iy} r={18} fill="var(--bg-elevated)" stroke="var(--border-strong)" strokeWidth={1.5} />
+                  <text x={60} y={iy + 5} textAnchor="middle" fontSize={12} fontFamily="ui-monospace,monospace" fill="var(--text-muted)">{label}</text>
+                  <line x1={78} y1={iy} x2={168} y2={80} stroke="var(--border-strong)" strokeWidth={1.5} />
+                </g>
+              ))}
+              <text x={60} y={148} textAnchor="middle" fontSize={10} fill="var(--text-faint)">⋮</text>
+              {/* weight badges */}
+              {[["w₁", 60, 35], ["w₂", 95, 73], ["w₃", 60, 110]].map(([label, bx, by]) => (
+                <g key={label}>
+                  <rect x={bx} y={by} width={30} height={17} rx={4} fill="var(--accent-soft)" stroke="var(--border)" strokeWidth={1} />
+                  <text x={bx + 15} y={by + 12} textAnchor="middle" fontSize={10} fontFamily="ui-monospace,monospace" fill="var(--text-muted)">{label}</text>
+                </g>
+              ))}
+              {/* summation neuron */}
+              <circle cx={196} cy={80} r={26} fill="var(--bg-elevated)" stroke="var(--border-strong)" strokeWidth={2} />
+              <text x={196} y={75} textAnchor="middle" fontSize={17} fill="var(--text-muted)">Σ</text>
+              <text x={196} y={93} textAnchor="middle" fontSize={9} fill="var(--text-faint)">+ bias</text>
+              {/* arrow to activation */}
+              <line x1={222} y1={80} x2={244} y2={80} stroke="var(--border-strong)" strokeWidth={1.5} />
+              <polygon points="244,76 251,80 244,84" fill="var(--border-strong)" />
+              {/* activation box with S-curve */}
+              <rect x={251} y={63} width={58} height={34} rx={6} fill="var(--bg-code)" stroke="var(--border)" strokeWidth={1.5} />
+              <text x={280} y={74} textAnchor="middle" fontSize={9} fill="var(--text-faint)">activation</text>
+              <path d="M258,90 C258,85 264,83 268,80 C272,77 278,75 278,70" stroke="var(--accent)" strokeWidth={1.8} fill="none" />
+              {/* arrow to output */}
+              <line x1={309} y1={80} x2={330} y2={80} stroke="var(--border-strong)" strokeWidth={1.5} />
+              <polygon points="330,76 337,80 330,84" fill="var(--border-strong)" />
+              {/* output node */}
+              <circle cx={355} cy={80} r={18} fill="var(--bg-elevated)" stroke="var(--border-strong)" strokeWidth={1.5} />
+              <text x={355} y={85} textAnchor="middle" fontSize={12} fontFamily="ui-monospace,monospace" fill="var(--text-muted)">ŷ</text>
+              {/* labels */}
+              <text x={60} y={155} textAnchor="middle" fontSize={9} fill="var(--text-faint)">inputs</text>
+              <text x={196} y={118} textAnchor="middle" fontSize={9} fill="var(--text-faint)">neuron</text>
+              <text x={280} y={108} textAnchor="middle" fontSize={9} fill="var(--text-faint)">activation</text>
+              <text x={355} y={110} textAnchor="middle" fontSize={9} fill="var(--text-faint)">output</text>
+            </svg>
             <div style={{ marginTop: 16 }}>
               <button className="btn btn--primary" onClick={() => passGate("pick")}>
                 Continue →
@@ -218,6 +258,10 @@ export default function Neuron() {
               <div className="neuron-selected-label">Your question</div>
               <div className="neuron-selected-text">{question.prompt || "(no question set)"}</div>
             </div>
+            <div className="neuron-diagram-card" style={{ maxWidth: 640 }}>
+              <div className="neuron-panel-title" style={{ marginBottom: 10 }}>Your perceptron</div>
+              <PerceptronSVG inputs={inputs} />
+            </div>
             <div className="section-head">
               <h3>Which inputs matter — and how much?</h3>
             </div>
@@ -245,11 +289,6 @@ export default function Neuron() {
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div className="neuron-diagram-card">
-              <div className="neuron-panel-title" style={{ marginBottom: 10 }}>Your perceptron</div>
-              <PerceptronSVG inputs={inputs} />
             </div>
           </>
         )}
@@ -291,8 +330,9 @@ export default function Neuron() {
             <div className="section-head">
               <h3>Step through the computation</h3>
               <p>
-                Click <strong>Start</strong> to walk through every step the neuron takes.
-                Hit <strong>Random example</strong> to try different input combinations.
+                Try out your own example and see how your neuron would classify it! Press on the
+                inputs in the diagram to set them to yes/no. Then click <strong>Start</strong> to
+                walk through every step the neuron takes.
               </p>
             </div>
             <div className="neuron-builder-layout">
@@ -317,6 +357,13 @@ export default function Neuron() {
                   step={wtStep}
                   result={result}
                   question={question}
+                  onToggleValue={(id) => {
+                    setValuesByQ((prev) => {
+                      const cur = prev[question.id] || {};
+                      return { ...prev, [question.id]: { ...cur, [id]: cur[id] === 1 ? 0 : 1 } };
+                    });
+                    setWtStep(0);
+                  }}
                 />
                 <div style={{ marginTop: 16 }}>
                   <div className="neuron-panel-title" style={{ marginBottom: 8 }}>What's happening</div>

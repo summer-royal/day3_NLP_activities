@@ -7,7 +7,7 @@ function trunc(str, n) {
 
 // step === null  →  static (weights page, no values shown)
 // step === 0–5  →  animated (run page, highlights progress)
-export default function PerceptronSVG({ inputs, values, step, result, question }) {
+export default function PerceptronSVG({ inputs, values, step, result, question, onToggleValue }) {
   if (!inputs || inputs.length === 0) {
     return (
       <div style={{ padding: 20, textAlign: "center", color: "var(--text-faint)", fontSize: 13 }}>
@@ -46,7 +46,7 @@ export default function PerceptronSVG({ inputs, values, step, result, question }
   const hlRelu = isRun && step >= 4;
   const hlOutput = isRun && step >= 5;
 
-  const accent = "#b8530a";
+  const accent = "#f5a623";
   const success = "#2d7a3d";
   const errorC = "#c0392b";
 
@@ -59,8 +59,10 @@ export default function PerceptronSVG({ inputs, values, step, result, question }
         const val = isRun && values ? (values[inp.id] ?? 0) : null;
         const isYes = val === 1;
 
+        const isClickable = !!onToggleValue && isRun;
         return (
-          <g key={inp.id}>
+          <g key={inp.id} onClick={isClickable ? () => onToggleValue(inp.id) : undefined}
+            style={{ cursor: isClickable ? "pointer" : "default" }}>
             <text
               x={inputNodeX - inputNodeR - 7} y={iy + 4}
               textAnchor="end" fontSize={11} fill="var(--text-muted)"

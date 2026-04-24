@@ -10,8 +10,10 @@
   --text-faint:  #999693;
   --border:      #e5e3de;
   --border-strong: #d6d3cc;
-  --accent:      #b8530a;
-  --accent-soft: #f3e6d8;
+  --primary:     #2d2b6b;
+  --accent:      #f5a623;
+  --accent-soft: #fef5d0;
+  --secondary:   #4472c4;
   --success:     #2d7a3d;
   --error:       #c0392b;
   --shadow-sm:   0 1px 2px rgba(0,0,0,0.04);
@@ -154,9 +156,9 @@ body {
 }
 
 .era-tab--active {
-  background: var(--bg-elevated);
-  border-color: var(--border-strong);
-  color: var(--text);
+  background: rgba(45, 43, 107, 0.07);
+  border-color: rgba(45, 43, 107, 0.28);
+  color: var(--primary);
   box-shadow: var(--shadow-sm);
 }
 
@@ -181,7 +183,7 @@ body {
   color: var(--text-muted);
 }
 
-.era-tab--about.era-tab--active { color: var(--accent); }
+.era-tab--about.era-tab--active { color: var(--primary); }
 
 /* ── Main content ─────────────────────────────────────── */
 
@@ -276,9 +278,9 @@ body {
 }
 
 .eliza__step--active {
-  background: var(--bg-elevated);
-  color: var(--text);
-  border-color: var(--border-strong);
+  background: rgba(45, 43, 107, 0.07);
+  color: var(--primary);
+  border-color: rgba(45, 43, 107, 0.28);
   box-shadow: var(--shadow-sm);
 }
 
@@ -322,7 +324,7 @@ body {
   border-color: var(--accent);
 }
 
-.btn--primary:hover { background: #9d4509; }
+.btn--primary:hover { background: #d98d1a; }
 
 .btn--primary:disabled {
   background: var(--border-strong);
