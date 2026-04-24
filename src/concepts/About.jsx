@@ -37,6 +37,11 @@ export default function About() {
         <p className="about__sub">
           Made for high-school students curious about how machines learned to see.
         </p>
+        <p className="about__sub">
+          Inspired by{" "}
+          <Link href="https://github.com/diganelin/nlp-eras">Daniela Ganelin's NLP Eras lecture</Link>
+          {" "}(<Link href="https://nlp-eras.vercel.app">nlp-eras.vercel.app</Link>).
+        </p>
       </section>
 
       <section className="about__section">
