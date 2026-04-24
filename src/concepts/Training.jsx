@@ -1,6 +1,8 @@
 import { useState } from "react";
-import TrainingDemo from "./training/TrainingDemo.jsx";
 import ConceptRecap from "../components/ConceptRecap.jsx";
+
+const TF_URL =
+  "https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.42821&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false&noise_hide=true&regularization_hide=true&regularizationRate_hide=true&activation_hide=true&batchSize_hide=true";
 
 const STEPS = [
   { id: "demo", label: "Train It" },
@@ -26,23 +28,26 @@ export default function Training() {
         ))}
       </div>
 
-      <div className="eliza__stage">
+      <div className="eliza__stage" style={{ padding: 0, gap: 0 }}>
         {current.id === "demo" && (
-          <>
-            <div className="section-head">
-              <h3>Watch a network learn from scratch</h3>
-              <p>
-                The network starts with random weights — it has no idea what it's doing.
-                Each training epoch runs through all 20 data points, measures the error,
-                and nudges every weight a small step in the right direction. Watch the
-                decision boundary evolve and the loss curve fall.
-              </p>
-            </div>
-            <TrainingDemo />
-          </>
+          <iframe
+            src={TF_URL}
+            title="TensorFlow Playground"
+            style={{
+              flex: 1,
+              width: "100%",
+              border: "none",
+              minHeight: 0,
+            }}
+            allow="accelerometer"
+          />
         )}
 
-        {current.id === "recap" && <ConceptRecap id="training" />}
+        {current.id === "recap" && (
+          <div style={{ padding: "20px 24px" }}>
+            <ConceptRecap id="training" />
+          </div>
+        )}
       </div>
     </div>
   );
